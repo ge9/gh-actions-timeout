@@ -1,0 +1,27 @@
+name: Manual release
+
+on:
+  workflow_dispatch:
+    inputs:
+      test:
+        description: "test"
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: pre
+        run: |
+          sleep 31 &
+
+      - name: test
+        uses: ge9/gh-actions-timeout@main
+        with:
+          check-cmd: "! pgrep -f '^sleep 31'"
+          keep-cmd: "false"
+          info-cmd: "date"

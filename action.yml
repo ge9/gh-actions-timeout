@@ -1,0 +1,21 @@
+name: 'Timeout action by ge9'
+description: 'Set timeout with checker command'
+branding:
+  icon: terminal
+author: 'ge9'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+  post: 'dist/index.js'
+  post-if: '!cancelled()'
+inputs:
+  interval:
+    default: "10"
+  check-cmd:
+    required: true
+  keep-cmd:
+    default: ""
+  info-cmd:
+    default: ""
+  timeout:
+    default: "600"
